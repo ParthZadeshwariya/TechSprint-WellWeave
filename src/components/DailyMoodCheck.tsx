@@ -111,10 +111,10 @@ const DailyMoodCheck = () => {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="w-full max-w-2xl mx-auto mt-24"
         >
-            <Card className="p-6 bg-white/80 backdrop-blur-sm border-white/50 shadow-md">
+            <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50 shadow-md">
                 <div className="text-center mb-4 ">
-                    <h3 className="text-xl font-semibold text-center text-foreground text-gray-800 ">How are you feeling today?</h3>
-                    <p className="text-muted-foreground text-center text-sm text-gray-700">Check in with yourself. Tracking your mood helps identify patterns.</p>
+                    <h3 className="text-xl font-semibold text-center text-foreground">How are you feeling today?</h3>
+                    <p className="text-muted-foreground text-center text-sm">Check in with yourself. Tracking your mood helps identify patterns.</p>
                 </div>
 
                 <AnimatePresence mode="wait">
@@ -136,7 +136,7 @@ const DailyMoodCheck = () => {
                                     ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105 hover:shadow-md hover:bg-opacity-100'} 
                                     bg-opacity-50`}
                                 >
-                                    <div className="mb-2 bg-white rounded-full p-2 shadow-sm">
+                                    <div className="mb-2 bg-background rounded-full p-2 shadow-sm">
                                         {isSubmitting && selectedMood === mood.value ? (
                                             <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
                                         ) : (
@@ -157,8 +157,8 @@ const DailyMoodCheck = () => {
                             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 animate-bounce">
                                 {moods.find(m => m.value === selectedMood)?.icon}
                             </div>
-                            <h4 className="text-lg font-medium text-primary text-gray-700">Thanks for checking in!</h4>
-                            <p className="text-muted-foreground text-gray-600"> Your mood has been recorded.</p>
+                            <h4 className="text-lg font-medium text-primary">Thanks for checking in!</h4>
+                            <p className="text-muted-foreground"> Your mood has been recorded.</p>
                             <div className="flex justify-center gap-4 mt-4">
                                 <button
                                     onClick={() => setHasCheckedIn(false)}

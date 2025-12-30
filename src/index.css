@@ -49,35 +49,43 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
+    /* Deep Obsidian Blue Background */
+    --background: 230 35% 7%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
+    /* Soft Twilight Card Surface */
+    --card: 230 25% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 11%;
+    --popover: 230 25% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
+    /* Neural Violet Primary */
+    --primary: 250 60% 65%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 32% 17%;
+    /* Deep Slate Secondary */
+    --secondary: 210 30% 20%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 32% 17%;
+    /* Deep Muted */
+    --muted: 215 25% 15%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 217 32% 17%;
+    /* Cyan Glow Accent */
+    --accent: 180 50% 50%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 212 96% 78%;
+    /* Subtle Borders */
+    --border: 230 20% 20%;
+    --input: 230 20% 20%;
+    --ring: 250 60% 65%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(217 32% 17%) 100%);
+    /* Aurora Gradient */
+    --gradient-hero: radial-gradient(circle at 50% 0%, hsl(250 40% 15%) 0%, hsl(230 35% 7%) 60%);
   }
 }
 

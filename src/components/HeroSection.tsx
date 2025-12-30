@@ -23,20 +23,17 @@ const HeroSection = ({ onStartJourney, onMeditate }: HeroSectionProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-white/20 shadow-sm mb-6">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-foreground/80">AI-Powered Mental Wellness</span>
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span>Your Mind, Visualized</span>
           </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-foreground">
-            Untangle Your <br />
-            <span className="text-gradient">Inner World</span>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 text-foreground">
+            Weave Your Thoughts Into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">Digital Tapestry</span>
           </h1>
-
-          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            A safe space to visualize your thoughts, understand your emotions, and find clarity through AI-guided journaling and meditation.
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            Transform your journaling into an interactive mind graph.
+            Gain clarity, track emotions, and find your balance with AI-powered insights.
           </p>
-
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"

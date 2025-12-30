@@ -310,14 +310,14 @@ const MeditationSpace = () => {
         <div className="space-y-2">
           <label className="text-sm font-semibold text-foreground flex items-center justify-center gap-2"><Timer size={16} /> Duration</label>
           <Select value={String(selectedDuration)} onValueChange={(v) => setSelectedDuration(Number(v))}>
-            <SelectTrigger className="w-full bg-white border border-input h-12 text-base text-foreground font-medium shadow-sm"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="w-full bg-input border border-input h-12 text-base text-foreground font-medium shadow-sm"><SelectValue /></SelectTrigger>
             <SelectContent>{durationOptions.map(o => <SelectItem key={o.value} value={String(o.value)}>{o.label}</SelectItem>)}</SelectContent>
           </Select>
         </div>
         <div className="space-y-2">
           <label className="text-sm font-semibold text-foreground flex items-center justify-center gap-2"><Music size={16} /> Background Music</label>
           <Select value={selectedMusic} onValueChange={setSelectedMusic}>
-            <SelectTrigger className="w-full bg-white border border-input h-12 text-base text-foreground font-medium shadow-sm"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="w-full bg-input border border-input h-12 text-base text-foreground font-medium shadow-sm"><SelectValue /></SelectTrigger>
             <SelectContent>{musicOptions.map(o => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}</SelectContent>
           </Select>
         </div>

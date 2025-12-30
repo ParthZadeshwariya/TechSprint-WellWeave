@@ -10,17 +10,17 @@ const ContactSection = () => {
                     Have questions or feedback? We'd love to hear from you.
                 </p>
 
-                <form className="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-sm" onSubmit={(e) => e.preventDefault()}>
+                <form className="max-w-md mx-auto bg-card p-8 rounded-2xl shadow-sm border border-border" onSubmit={(e) => e.preventDefault()}>
                     <div className="space-y-4">
                         <input
                             type="email"
                             placeholder="Your Email"
-                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
                         />
                         <textarea
                             placeholder="Your Message"
                             rows={4}
-                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
                         ></textarea>
                         <Button className="w-full rounded-full h-12 text-lg">Send Message</Button>
                     </div>

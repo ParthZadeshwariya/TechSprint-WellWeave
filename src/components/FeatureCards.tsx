@@ -10,21 +10,21 @@ const FeatureCards = ({ onNavigate }: FeatureCardsProps) => {
     const features = [
         {
             icon: <Brain className="w-8 h-8 text-primary" />,
-            title: <span className="text-blue-900">Thought Visualization</span>,
+            title: <span className="text-foreground font-semibold">Thought Visualization</span>,
             description: "See your thoughts come alive in a dynamic 3D mind graph. Connect concepts and find clarity.",
             action: () => onNavigate("journal"),
             delay: 0.1,
         },
         {
             icon: <Heart className="w-8 h-8 text-pink-500" />,
-            title: <span className="text-blue-900">Meditation Space</span>,
+            title: <span className="text-foreground font-semibold">Meditation Space</span>,
             description: "Find your calm with guided breathing and soothing ambiance. A sanctuary for your mind.",
             action: () => onNavigate("meditation"),
             delay: 0.2,
         },
         {
             icon: <MessageCircle className="w-8 h-8 text-indigo-500" />,
-            title: <span className="text-blue-900">AI Guide</span>,
+            title: <span className="text-foreground font-semibold">AI Guide</span>,
             description: "Chat with an empathetic AI companion who understands your context and offers gentle support.",
             action: () => onNavigate("journal"), // Links to journal for now as chat is part of it
             delay: 0.3,
@@ -50,12 +50,12 @@ const FeatureCards = ({ onNavigate }: FeatureCardsProps) => {
                             viewport={{ once: true }}
                             transition={{ delay: feature.delay }}
                             onClick={feature.action}
-                            className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-transparent hover:border-primary/20 group"
+                            className="bg-card rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-border hover:border-primary/20 group"
                         >
                             <div className="w-16 h-16 rounded-2xl bg-secondary/50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 {feature.icon}
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                            <h3 className="text-xl font-bold mb-3 text-card-foreground group-hover:text-primary transition-colors">
                                 {feature.title}
                             </h3>
                             <p className="text-muted-foreground leading-relaxed">
