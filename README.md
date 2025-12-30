@@ -3,7 +3,7 @@
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg?logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.0.0-green.svg?logo=vite)](https://vitejs.dev/)
-[![Gemini AI](https://img.shields.io/badge/Google%20Gemini-1.5--flash-orange.svg?logo=google)](https://ai.google.dev/)
+[![Gemini AI](https://img.shields.io/badge/Google%20Gemini-2.5--pro-orange.svg?logo=google)](https://ai.google.dev/)
 
 **Well-Weave AI** is an innovative mental wellness journaling app powered by AI. Users can pour their thoughts into a digital journal, where advanced AI analysis (via Google Gemini) extracts emotions, concepts, people, and triggers to build a **dynamic mind graph**.  
 
@@ -56,4 +56,3 @@ npm install
 # Run the app
 npm run dev
 ```
-Usage Guidance: https://youtu.be/zIaxagxsLeY?si=Fv5TaOQ0jIbSDx99

@@ -58,7 +58,7 @@ const Navbar = () => {
 
                         {user ? (
                             <div className="flex items-center gap-4">
-                                <span className="text-sm font-medium">Hello, {user.displayName || "Traveler"}</span>
+                                <a href="/profile" className="text-sm font-medium hover:underline">Hello, {user.displayName || "Traveler"}</a>
                                 <Button variant="outline" className="rounded-full px-6" onClick={() => logout()}>Sign Out</Button>
                             </div>
                         ) : (
@@ -101,7 +101,10 @@ const Navbar = () => {
                                     </a>
                                 ))}
                                 {user ? (
-                                    <Button className="w-full rounded-full" onClick={() => { logout(); setMobileMenuOpen(false); }}>Sign Out</Button>
+                                    <>
+                                        <a href="/profile" className="text-foreground/80 hover:text-primary transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Profile</a>
+                                        <Button className="w-full rounded-full" onClick={() => { logout(); setMobileMenuOpen(false); }}>Sign Out</Button>
+                                    </>
                                 ) : (
                                     <Button className="w-full rounded-full" onClick={() => { setAuthModalOpen(true); setMobileMenuOpen(false); }}>Sign In</Button>
                                 )}

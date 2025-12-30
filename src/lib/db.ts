@@ -188,3 +188,56 @@ export const fetchMindGraph = async (uid: string) => {
         throw e;
     }
 };
+// --- Achievements ---
+export const unlockAchievement = async (uid: string, achievementId: string) => {
+    try {
+        const achievementRef = doc(db, "users", uid, "achievements", achievementId);
+        await setDoc(achievementRef, {
+            id: achievementId,
+            unlocked_at: serverTimestamp(),
+            unlocked: true
+        }, { merge: true });
+    } catch (e) {
+        console.error("Error unlocking achievement:", e);
+        throw e;
+    }
+};
+
+export const fetchAchievements = async (uid: string) => {
+    try {
+        const achievementsRef = collection(db, "users", uid, "achievements");
+        const querySnapshot = await getDocs(achievementsRef);
+
+        return querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            unlocked_at: doc.data().unlocked_at,
+            unlocked: true
+        }));
+    } catch (e) {
+        console.error("Error fetching achievements:", e);
+        throw e;
+    }
+};
+
+export const fetchJournalEntries = async (uid: string) => {
+    try {
+        // Assuming journal entries are stored as visual entries based on other parts of the code
+        // Or if they are part of the 'mind graph' entries.
+        // Based on analysis, they seem to be part of the 'visualizations' -> 'entries' in saveMindGraph
+        // But let's check for a specific collection if it exists. 
+        // Re-reading code: 'ThoughtEntry' is used in saveMindGraph.
+        // Let's add a function to get detailed entries if needed for export, 
+        // or we can reuse fetchMindGraph if that's the canonical source.
+        // For 'Export Data' feature, let's try to fetch all logged thoughts.
+
+        // Wait, looking at logChatMessage... that seems to be the chat.
+        // looking at saveMindGraph... entries are inside the big JSON blobl.
+        // This might be heavy to parse for just an export, but it's the current architecture.
+
+        const graphData = await fetchMindGraph(uid);
+        return graphData.entries || [];
+    } catch (e) {
+        console.error("Error fetching journal entries:", e);
+        return [];
+    }
+};

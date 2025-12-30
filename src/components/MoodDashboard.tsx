@@ -7,6 +7,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { fetchMoodHistory } from "@/lib/db";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
+const moodMap = {
+    great: 5,
+    good: 4,
+    okay: 3,
+    meh: 2,
+    bad: 1
+};
 
 const moodsInfo = {
     great: { label: "Great", icon: <Heart className="w-4 h-4 text-pink-500" />, color: "bg-pink-100" },
@@ -94,6 +103,59 @@ const MoodDashboard = () => {
                             footer={footer}
                         />
                     </div>
+                </CardContent>
+            </Card>
+
+            {/* Chart Section */}
+            <Card className="card-neural mb-8">
+                <CardHeader>
+                    <CardTitle className="text-lg">Mood Trends</CardTitle>
+                </CardHeader>
+                <CardContent className="h-[300px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={[...history].reverse()} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                            <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                            <XAxis
+                                dataKey="date"
+                                tickFormatter={(date) => new Date(date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                                style={{ fontSize: '0.75rem' }}
+                            />
+                            <YAxis
+                                domain={[0, 6]}
+                                ticks={[1, 2, 3, 4, 5]}
+                                tickFormatter={(value) => {
+                                    if (value === 5) return 'Great';
+                                    if (value === 4) return 'Good';
+                                    if (value === 3) return 'Okay';
+                                    if (value === 2) return 'Meh';
+                                    if (value === 1) return 'Bad';
+                                    return '';
+                                }}
+                                style={{ fontSize: '0.75rem' }}
+                                width={50}
+                            />
+                            <Tooltip
+                                labelFormatter={(date) => new Date(date as string).toLocaleDateString()}
+                                formatter={(value: any) => {
+                                    if (value === 5) return ['Great', 'Mood'];
+                                    if (value === 4) return ['Good', 'Mood'];
+                                    if (value === 3) return ['Okay', 'Mood'];
+                                    if (value === 2) return ['Meh', 'Mood'];
+                                    if (value === 1) return ['Bad', 'Mood'];
+                                    return [value, 'Score'];
+                                }}
+                            />
+                            <Line
+                                type="monotone"
+                                dataKey={(entry) => moodMap[entry.mood as keyof typeof moodMap] || 3}
+                                stroke="#8884d8"
+                                strokeWidth={2}
+                                dot={{ fill: '#8884d8', r: 4 }}
+                                activeDot={{ r: 8 }}
+                                name="Mood"
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
                 </CardContent>
             </Card>
 

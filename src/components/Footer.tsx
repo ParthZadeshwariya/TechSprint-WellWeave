@@ -67,7 +67,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 WellWeave. All rights reserved. Made with ❤️ for mental wellness.
+            © 2025 WellWeave. All rights reserved. Made with ❤️ for mental wellness.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span>Privacy First</span>
