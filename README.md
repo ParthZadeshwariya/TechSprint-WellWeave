@@ -47,8 +47,8 @@ This full-stack React app combines intuitive UI/UX with AI-driven personalizatio
 
 ```bash
 # Clone the repo
-git clone https://github.com/ParthZadeshwariya/Well-Weave-AI.git
-cd Well-Weave-AI
+git clone https://github.com/ParthZadeshwariya/TechSprint-WellWeave.git
+cd TechSprint-WellWeave
 
 # Install dependencies
 npm install
