@@ -20,6 +20,9 @@ interface AuthContextType {
     signInWithGoogle: () => Promise<void>;
     signUp: (email: string, password: string, displayName: string) => Promise<void>;
     logout: () => Promise<void>;
+    googleAccessToken: string | null;
+    connectGoogleFit: () => Promise<void>;
+    disconnectGoogleFit: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -27,26 +30,36 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const [googleAccessToken, setGoogleAccessToken] = useState<string | null>(() => {
+        return sessionStorage.getItem("googleAccessToken");
+    });
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
-                // Determine if we need to sync profile (e.g. lastActive)
-                // We import ensureUserProfile dynamically or move it to a safe place to avoid cycles if any
-                // But here we can just do a direct firestore update if we want to be pure, 
-                // OR we just use the db helper. Let's use the helper.
                 try {
                     const { ensureUserProfile } = await import("@/lib/db");
                     await ensureUserProfile(currentUser);
                 } catch (e) {
                     console.error("Profile sync error:", e);
                 }
+            } else {
+                // Clear token on logout
+                setGoogleAccessToken(null);
+                sessionStorage.removeItem("googleAccessToken");
             }
             setUser(currentUser);
             setLoading(false);
         });
         return () => unsubscribe();
     }, []);
+
+    // Persist token changes
+    useEffect(() => {
+        if (googleAccessToken) {
+            sessionStorage.setItem("googleAccessToken", googleAccessToken);
+        }
+    }, [googleAccessToken]);
 
     const signIn = async (email: string, password: string) => {
         await signInWithEmailAndPassword(auth, email, password);
@@ -84,6 +97,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
 
+            // Attempt to get token right away if possible, though normal sign in might not have scopes
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            if (credential?.accessToken) {
+                setGoogleAccessToken(credential.accessToken);
+            }
+
             // Create User Profile in Firestore if it doesn't exist
             const userRef = doc(db, "users", user.uid);
             const userSnap = await getDoc(userRef);
@@ -102,12 +121,35 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     };
 
+    const connectGoogleFit = async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/fitness.activity.read');
+            provider.addScope('https://www.googleapis.com/auth/fitness.body.read');
+            provider.addScope('https://www.googleapis.com/auth/fitness.sleep.read');
+
+            const result = await signInWithPopup(auth, provider);
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            if (credential?.accessToken) {
+                setGoogleAccessToken(credential.accessToken);
+            }
+        } catch (error) {
+            console.error("Error connecting to Google Fit:", error);
+            throw error;
+        }
+    };
+
     const logout = async () => {
         await signOut(auth);
     };
 
+    const disconnectGoogleFit = () => {
+        setGoogleAccessToken(null);
+        sessionStorage.removeItem("googleAccessToken");
+    };
+
     return (
-        <AuthContext.Provider value={{ user, loading, signIn, signInWithGoogle, signUp, logout }}>
+        <AuthContext.Provider value={{ user, loading, signIn, signInWithGoogle, signUp, logout, googleAccessToken, connectGoogleFit, disconnectGoogleFit }}>
             {!loading && children}
         </AuthContext.Provider>
     );

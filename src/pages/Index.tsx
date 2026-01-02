@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeatureCards from "@/components/FeatureCards";
@@ -13,6 +14,7 @@ import MoodDashboard from "@/components/MoodDashboard";
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<"landing" | "journal" | "meditation" | "mood-history">("landing");
+  const navigate = useNavigate();
 
   // Scroll to top when view changes
   useEffect(() => {
@@ -115,7 +117,13 @@ const Index = () => {
           onStartJourney={() => setCurrentView("journal")}
           onMeditate={() => setCurrentView("meditation")}
         />
-        <FeatureCards onNavigate={setCurrentView} />
+        <FeatureCards onNavigate={(view) => {
+          if (view === "fitness") {
+            navigate("/fitness");
+          } else {
+            setCurrentView(view);
+          }
+        }} />
         <AboutSection />
         <ContactSection />
       </main>

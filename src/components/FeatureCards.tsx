@@ -1,9 +1,9 @@
 
 import { motion } from "framer-motion";
-import { Brain, Heart, MessageCircle } from "lucide-react";
+import { Brain, Heart, MessageCircle, Activity } from "lucide-react";
 
 interface FeatureCardsProps {
-    onNavigate: (view: "journal" | "meditation") => void;
+    onNavigate: (view: "journal" | "meditation" | "fitness") => void;
 }
 
 const FeatureCards = ({ onNavigate }: FeatureCardsProps) => {
@@ -28,6 +28,13 @@ const FeatureCards = ({ onNavigate }: FeatureCardsProps) => {
             description: "Chat with an empathetic AI companion who understands your context and offers gentle support.",
             action: () => onNavigate("journal"), // Links to journal for now as chat is part of it
             delay: 0.3,
+        },
+        {
+            icon: <Activity className="w-8 h-8 text-blue-500" />,
+            title: <span className="text-foreground font-semibold">Physical Wellbeing</span>,
+            description: "Track your fitness journey and get personalized health insights from your Google Fit data.",
+            action: () => onNavigate("fitness"),
+            delay: 0.4,
         },
     ];
 
