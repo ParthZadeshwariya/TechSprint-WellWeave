@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Brain, Heart, MessageCircle, Activity } from "lucide-react";
 
 interface FeatureCardsProps {
-    onNavigate: (view: "journal" | "meditation" | "fitness") => void;
+    onNavigate: (view: "journal" | "meditation" | "fitness" | "therapist-connect") => void;
 }
 
 const FeatureCards = ({ onNavigate }: FeatureCardsProps) => {
@@ -35,6 +35,13 @@ const FeatureCards = ({ onNavigate }: FeatureCardsProps) => {
             description: "Track your fitness journey and get personalized health insights from your Google Fit data.",
             action: () => onNavigate("fitness"),
             delay: 0.4,
+        },
+        {
+            icon: <Activity className="w-8 h-8 text-teal-500" />,
+            title: <span className="text-foreground font-semibold">Talk to a Therapist</span>,
+            description: "Schedule a video session with a certified therapist for personalized professional support.",
+            action: () => onNavigate("therapist-connect"),
+            delay: 0.5,
         },
     ];
 

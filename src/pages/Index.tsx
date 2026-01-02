@@ -11,9 +11,10 @@ import Footer from "@/components/Footer";
 import JournalInterface from "@/components/JournalInterface";
 import MeditationSpace from "@/components/MeditationSpace";
 import MoodDashboard from "@/components/MoodDashboard";
+import TherapistConnect from "@/components/TherapistConnect";
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<"landing" | "journal" | "meditation" | "mood-history">("landing");
+  const [currentView, setCurrentView] = useState<"landing" | "journal" | "meditation" | "mood-history" | "therapist-connect">("landing");
   const navigate = useNavigate();
 
   // Scroll to top when view changes
@@ -108,6 +109,28 @@ const Index = () => {
     );
   }
 
+  if (currentView === "therapist-connect") {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="pt-24 container mx-auto px-6 pb-20">
+          <div className="mb-8">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={goBackToLanding}
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary mb-4"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </Button>
+          </div>
+          <TherapistConnect />
+        </div>
+      </div>
+    );
+  }
+
   // Landing Page View
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
@@ -121,7 +144,7 @@ const Index = () => {
           if (view === "fitness") {
             navigate("/fitness");
           } else {
-            setCurrentView(view);
+            setCurrentView(view as any);
           }
         }} />
         <AboutSection />
