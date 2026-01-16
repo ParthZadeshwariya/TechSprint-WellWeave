@@ -11,16 +11,19 @@ Visualize your emotional patterns, explore connections, and chat with an empathe
 
 This full-stack React app combines intuitive UI/UX with AI-driven personalization to foster **self-awareness and emotional growth**.
 
+### 📺 [Watch the Demo Video](https://youtu.be/CLAenmJ0HaA?si=VBW5qctcXqG7y8-L)
+
 ---
 
 ## ✨ Features
 
-- **AI-Powered Journaling**: Write or speak entries; Gemini AI analyzes text to identify emotions (e.g., anxiety, joy), people, activities, and triggers.  
-- **Dynamic Mind Graph**: Interactive force-directed visualization of thoughts using custom layout algorithms. Nodes spread out uncluttered, with animations (fade-in, pulse, scale) and zoom/pan support.  
-- **AI Guide Chatbot**: Converse about your graph (e.g., *"What triggers my stress?"*), get personalized advice, and receive empathetic responses. Detects serious mental health topics and provides helplines (e.g., US: **988 Suicide Prevention Lifeline**).  
-- **Voice Input**: Record voice notes with placeholder speech-to-text (extensible to real STT).  
-- **Privacy-Focused**: Client-side processing; no data stored server-side (local state only).  
-- **Responsive UI**: Built with Tailwind CSS and shadcn/ui for a modern, accessible design.  
+- **Immersive 3D Mind Graph**: Visualize your mental state as a glowing "constellation" of thoughts. Fully interactive 3D view with zoom, pan, and rotate controls.
+- **Ethereal Journey UI**: A fluid, "Portal"-based interface that replaces traditional navigation with immersive transitions and state-driven journeys.
+- **AI-Powered Journaling & Analysis**: "Stream of Consciousness" journaling where **Gemini 2.0 Flash** analyzes entries to extract emotions, triggers, and entities, updating your Mind Graph in real-time.
+- **AI Health Coach ("Meliora")**: A context-aware companion that tracks your mood and fitness metrics (sleep, steps), providing actionable "micro-tips" and empathetic support.
+- **Therapist Connect**: Seamlessly book sessions with professional support. Integrated with **Google Calendar** to automatically generate **Google Meet** video links.
+- **Meditation Space**: A dedicated "Deep Dive" mode for guided breathing and focus, helping you center your mind.
+- **Privacy & Safety**: Client-side processing for privacy, with safety mechanisms that detect crisis keywords and provide helpline resources (e.g., 988).  
 
 ---
 
@@ -29,9 +32,9 @@ This full-stack React app combines intuitive UI/UX with AI-driven personalizatio
 | Category            | Technologies |
 |---------------------|--------------------------------------------------|
 | **Frontend**        | React 18, Vite, TypeScript |
-| **UI Library**      | shadcn/ui, Tailwind CSS, Lucide React Icons |
-| **AI/ML**           | Google Gemini API (`@google/generative-ai`) |
-| **Visualization**   | Custom force-directed layout, React Spring, React Zoom Pan Pinch |
+| **UI Library**      | shadcn/ui, Tailwind CSS, Framer Motion, Lucide React |
+| **AI/ML**           | Google Gemini API (`gemini-2.0-flash`), Google Calendar API |
+| **Visualization**   | Three.js, React Force Graph 3D, D3.js |
 | **State Management**| React Hooks (`useState`, `useEffect`) |
 | **Other**           | React Toast (notifications), Error Boundaries |
 
